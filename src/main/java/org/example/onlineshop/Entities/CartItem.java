@@ -12,21 +12,18 @@ import lombok.NoArgsConstructor;
 public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false)
-    private int quantity;
-
-    @Column(nullable = false)
-    private Double price;
+    private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "productVariant_Id")
+    @JoinColumn(name = "product_variant_id")
     private ProductVariant productVariant;
 
     @ManyToOne
-    @JoinColumn(name = "Cart_Id")
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
 }

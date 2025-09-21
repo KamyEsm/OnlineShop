@@ -15,12 +15,12 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
     private List<CartItem> cartItems;
 
     @ManyToOne
-    @JoinColumn(name = "User_Id")
-    User user;
+    @JoinColumn(name = "user_id")
+    private User user;
 }

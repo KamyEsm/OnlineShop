@@ -17,11 +17,11 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "Province_Id")
+    @JoinColumn(name = "province_id", nullable = false)
     private Province province;
 
     @OneToMany(mappedBy = "city")

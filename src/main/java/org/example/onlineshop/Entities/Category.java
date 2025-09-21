@@ -22,4 +22,11 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
+
+    @ManyToOne
+    @JoinColumn(name = "parent_category")
+    private Category parentCategory;
+
+    @OneToMany(mappedBy = "parentCategory")
+    private List<Category> subcategories;
 }
