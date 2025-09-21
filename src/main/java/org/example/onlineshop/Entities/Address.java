@@ -17,18 +17,21 @@ public class Address {
 
     @Column(nullable = false)
     private String address;
+
     @Column(nullable = false)
-    private int LicensePlate;
+    private Integer licensePlate;
+
     @Column(nullable = false)
-    private int Unit;
+    private Integer unit;
+
     @Column(nullable = false)
-    private String PostalCode;
+    private String postalCode;
 
     @ManyToOne
-    @JoinColumn(nullable = false,name = "User_Id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(nullable = false,name = "City_Id")
+    @JoinColumn(name = "city_id", nullable = false)
     private City city;
 }

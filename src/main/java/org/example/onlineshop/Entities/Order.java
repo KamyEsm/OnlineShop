@@ -24,16 +24,16 @@ public class Order {
     private LocalDate orderDate;
 
     @Column(nullable = false)
-    private Double orderTotal;
+    private Double totalPrice;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private OrderStatus orderStatus;
 
-    @OneToMany(mappedBy = "OrdeR")
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id")
-    User user;
+    @JoinColumn(name = "user_id")
+    private User user;
 }

@@ -17,24 +17,21 @@ public class ProductVariant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String name;
     @Column(nullable = false)
     private Double price;
-    private String description;
     @Column(nullable = false)
-    private int quantity;
+    private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "Product_Id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "Color_Id")
+    @JoinColumn(name = "color_id")
     private Color color;
 
     @ManyToOne
-    @JoinColumn(name = "Size_Id")
+    @JoinColumn(name = "size_id")
     private Size size;
 
     @OneToMany(mappedBy = "productVariant", cascade = CascadeType.REMOVE)

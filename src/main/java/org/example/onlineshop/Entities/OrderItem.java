@@ -16,17 +16,17 @@ public class OrderItem {
     private Long Id;
 
     @Column(nullable = false)
-    private int quantity;
+    private Integer quantity;
 
     @Column(nullable = false)
     private Double price;
 
     @ManyToOne
-    @JoinColumn(name = "ProductVariant_Id")
+    @JoinColumn(name = "product_variant_id")
     private ProductVariant productVariant;
 
     @ManyToOne
-    @JoinColumn(name = "order_Id")
-    private Order OrdeR;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
 }

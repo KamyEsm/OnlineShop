@@ -23,14 +23,15 @@ public class Product {
     @Column(nullable = false)
     private Double price;
     @Column(nullable = false)
-    private int entity;
+    private Integer totalQuantity;
 
     @OneToMany(mappedBy = "product")
-    private List<Comment> comment;
+    private List<Comment> comments;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "product")
-    private List<ProductVariant> productVariant;
+    private List<ProductVariant> productVariants;
 }

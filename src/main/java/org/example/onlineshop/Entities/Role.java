@@ -22,8 +22,8 @@ public class Role {
 
     private String description;
 
-    @OneToMany(mappedBy = "roles",cascade = CascadeType.REMOVE)
-    private List<User> Users;
+    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
+    private List<User> users;
 
     @Column(nullable = false)
     private APIs api;

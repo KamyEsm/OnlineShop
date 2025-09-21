@@ -19,23 +19,23 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String Name;
+    private String firstName;
     @Column(nullable = false)
-    private String LastName;
+    private String lastName;
     @Column(nullable = false, unique = true)
-    private String PhoneNumber;
+    private String phoneNumber;
 
     @ManyToOne
-    @JoinColumn(name = "role_Id",nullable = false)
-    private Role roles;
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
 
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Address> addresses;
 
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Comment> comments;
 
-    @OneToMany(cascade = CascadeType.REMOVE,mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Cart> carts;
 
     @OneToMany(mappedBy = "user")
