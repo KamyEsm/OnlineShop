@@ -1,10 +1,10 @@
-package org.example.onlineshop.Entities;
+package org.example.onlineshop.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.onlineshop.Enums.OrderStatus;
+import org.example.onlineshop.Enum.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.List;

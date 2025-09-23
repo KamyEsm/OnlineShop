@@ -1,4 +1,4 @@
-package org.example.onlineshop.Enums;
+package org.example.onlineshop.Enum;
 
 public enum OrderStatus {
     NEW,

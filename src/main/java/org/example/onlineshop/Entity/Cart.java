@@ -1,4 +1,4 @@
-package org.example.onlineshop.Entities;
+package org.example.onlineshop.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,16 +11,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Province {
+public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String name;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
+    private List<CartItem> cartItems;
 
-    @OneToMany(mappedBy = "province", cascade = CascadeType.REMOVE)
-    private List<City> cities;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

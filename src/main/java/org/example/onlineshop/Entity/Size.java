@@ -1,4 +1,4 @@
-package org.example.onlineshop.Entities;
+package org.example.onlineshop.Entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Color {
+public class Size {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String color;
+    @Column(nullable = false, unique = true)
+    private String size;
 
-    @OneToMany(mappedBy = "color")
+    @OneToMany(mappedBy = "size")
     private List<ProductVariant> productVariant;
+
 }
