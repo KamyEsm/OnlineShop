@@ -23,7 +23,7 @@ public class Role {
     private String description;
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
-    private List<User> users;
+    private List<Employee> users;
 
     @Column(nullable = false)
     private APIs api;

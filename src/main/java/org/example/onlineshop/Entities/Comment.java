@@ -20,7 +20,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private Employee user;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

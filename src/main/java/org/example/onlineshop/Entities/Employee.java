@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,12 @@ public class User {
     private String lastName;
     @Column(nullable = false, unique = true)
     private String phoneNumber;
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false, unique = true)
+    private String password;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
