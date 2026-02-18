@@ -3,10 +3,9 @@ package org.example.onlineshop.Service;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Entity.Employee;
 import org.example.onlineshop.Entity.Role;
-import org.example.onlineshop.Enum.RoleName;
-import org.example.onlineshop.Exception.Employee.DuplicateUsername;
-import org.example.onlineshop.Exception.Employee.InsecurePassword;
-import org.example.onlineshop.Exception.Role.RoleNotFound;
+import org.example.onlineshop.Exception.DuplicateData;
+import org.example.onlineshop.Exception.InsecurePassword;
+import org.example.onlineshop.Exception.NotFound;
 import org.example.onlineshop.Mapper.EmployeeMapper;
 import org.example.onlineshop.Repository.EmployeeR;
 import org.example.onlineshop.Repository.RoleR;
@@ -27,10 +26,10 @@ public class EmployeeService {
         this.rrepository = rrepository;
     }
 
-    public RegisterEmployeeDTO registerEmployee(RegisterEmployeeDTO employeeDTO) {
+    public RegisterEmployeeDTO registerEmployee(RegisterEmployeeDTO employeeDTO) throws NotFound {
 
         if(erepository.existsByUsername(employeeDTO.getUsername()))
-            throw new DuplicateUsername("username already exists");
+            throw new DuplicateData("username already exists");
 
         if(checker.check(employeeDTO.getPassword()).isCompromised())
             throw new InsecurePassword("The password is simple.");
@@ -38,7 +37,7 @@ public class EmployeeService {
         Employee newEmployee = employeeMapper.toEmployee(employeeDTO);
         Role role = rrepository.findByName("Customer");
         if(role == null)
-            throw new RoleNotFound("Role not found");
+            throw new NotFound("Role not found");
 
         newEmployee.setRole(role);
         role.getUsers().add(newEmployee);

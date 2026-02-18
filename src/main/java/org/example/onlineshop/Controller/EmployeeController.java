@@ -1,7 +1,7 @@
 package org.example.onlineshop.Controller;
 
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
-import org.example.onlineshop.Exception.Employee.EmployeeNotCreated;
+import org.example.onlineshop.Exception.NotCreated;
 import org.example.onlineshop.Service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +22,10 @@ public class EmployeeController {
         }
         RegisterEmployeeDTO newEmployee = employeeService.registerEmployee(employeeDTO);
         if(newEmployee == null) {
-            throw new EmployeeNotCreated("Employee Not Created");
+            throw new NotCreated("Employee Not Created");
         }
         else {
+            newEmployee.setPassword(null);
             return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
         }
     }
