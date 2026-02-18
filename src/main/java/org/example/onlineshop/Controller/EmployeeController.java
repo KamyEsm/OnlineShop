@@ -2,6 +2,7 @@ package org.example.onlineshop.Controller;
 
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Exception.NotCreated;
+import org.example.onlineshop.Exception.NotFound;
 import org.example.onlineshop.Service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> Add_Employee(@RequestBody RegisterEmployeeDTO employeeDTO) {
+    public ResponseEntity<?> Add_Employee(@RequestBody RegisterEmployeeDTO employeeDTO) throws NotFound {
         if(employeeDTO == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
