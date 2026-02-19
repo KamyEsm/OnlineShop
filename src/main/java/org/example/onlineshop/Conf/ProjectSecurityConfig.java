@@ -22,7 +22,8 @@ public class ProjectSecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/employees").permitAll()
                 .requestMatchers(HttpMethod.GET,"/api/employees","/api/employees/**").hasAnyRole("ADMIN","MANAGER")
                 .requestMatchers(HttpMethod.DELETE,"/api/employees/**").hasAnyRole("ADMIN","MANAGER")
-                .requestMatchers(HttpMethod.PUT,"/api/employees/**").hasAnyRole("ADMIN","MANAGER"));
+                .requestMatchers(HttpMethod.PUT,"/api/employees/**").hasAnyRole("ADMIN","MANAGER")
+                .requestMatchers(HttpMethod.PUT,"/api/employees/**/role").hasRole("MANAGER"));
         http.formLogin(withDefaults());
         http.httpBasic(withDefaults());
         http.csrf(AbstractHttpConfigurer::disable);

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.onlineshop.DTO.EmployeeDTO;
 import org.example.onlineshop.DTO.EmployeeDTOForRecord;
+import org.example.onlineshop.DTO.NameRollDTO;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Entity.Address;
 import org.example.onlineshop.Entity.Employee;
@@ -109,5 +110,18 @@ public class EmployeeService {
         employee.setRole(role);
         eRepository.save(employee);
         return employee;
+    }
+
+    public void change_role(String username, NameRollDTO role) throws NotFound {
+        Employee employee = eRepository.findEmployeeByUsername(username);
+
+        String roleName = role.getRoleName();
+        roleName = "ROLE_" + roleName;
+        Role role1 = rRepository.findByName(roleName);
+        if(role1 == null)
+            throw new NotFound("Role not found");
+        if(employee == null)
+            throw new NotFound("username not found");
+        employee.setRole(role1);
     }
 }
