@@ -1,5 +1,6 @@
 package org.example.onlineshop.Controller;
 
+import org.example.onlineshop.DTO.EmployeeDTO;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Exception.NotCreated;
 import org.example.onlineshop.Exception.NotFound;
@@ -7,6 +8,8 @@ import org.example.onlineshop.Service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class EmployeeController {
@@ -31,5 +34,10 @@ public class EmployeeController {
         }
     }
 
+
+    @GetMapping("/Members")
+    public ResponseEntity<?> Get_Employees() {
+        List<EmployeeDTO> members = employeeService.getAllEmployee();
+    }
 
 }

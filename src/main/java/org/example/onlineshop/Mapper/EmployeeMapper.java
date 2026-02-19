@@ -1,5 +1,6 @@
 package org.example.onlineshop.Mapper;
 
+import org.example.onlineshop.DTO.EmployeeDTO;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Entity.Employee;
 import org.springframework.stereotype.Component;
@@ -25,4 +26,11 @@ public class EmployeeMapper {
             registerEmployeeDTO.getPassword()
         );
     }
+
+    public EmployeeDTO toEmployeeDTO(Employee employee) {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+
+        
+    }
+
 }

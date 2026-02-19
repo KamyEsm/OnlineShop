@@ -1,5 +1,6 @@
 package org.example.onlineshop.Service;
 
+import org.example.onlineshop.DTO.EmployeeDTO;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Entity.Employee;
 import org.example.onlineshop.Entity.Role;
@@ -11,6 +12,8 @@ import org.example.onlineshop.Repository.EmployeeR;
 import org.example.onlineshop.Repository.RoleR;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EmployeeService {
@@ -46,4 +49,11 @@ public class EmployeeService {
         return employeeMapper.toRegisterEmployeeDTO(newEmployee);
     }
 
+    public List<EmployeeDTO> getAllEmployee() {
+        List<Employee> list = erepository.findAll();
+
+        for (Employee employee : list) {
+
+        }
+    }
 }
