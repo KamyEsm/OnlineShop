@@ -1,14 +1,13 @@
 package org.example.onlineshop.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category {
@@ -22,11 +21,4 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
-
-    @ManyToOne
-    @JoinColumn(name = "parent_category")
-    private Category parentCategory;
-
-    @OneToMany(mappedBy = "parentCategory")
-    private List<Category> subcategories;
 }
