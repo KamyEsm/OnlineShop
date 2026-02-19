@@ -1,23 +1,23 @@
 package org.example.onlineshop.DTO;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example.onlineshop.Entity.*;
+import org.example.onlineshop.Entity.Role;
 
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeDTO {
+public class EmployeeDTOForRecord {
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String username;
-    private Role role;
-    private List<AddressDTO> addresses;
-    private List<CartDTO> carts;
-    private List<OrderDTO> orders;
+    private String role;
+    private List<String> addresses;
+    private String lastCarts;
+    private List<String> orders;
+
 }

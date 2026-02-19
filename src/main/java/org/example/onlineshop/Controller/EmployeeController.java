@@ -1,10 +1,13 @@
 package org.example.onlineshop.Controller;
 
+import lombok.AllArgsConstructor;
 import org.example.onlineshop.DTO.EmployeeDTO;
+import org.example.onlineshop.DTO.EmployeeDTOForRecord;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
 import org.example.onlineshop.Exception.NotCreated;
 import org.example.onlineshop.Exception.NotFound;
 import org.example.onlineshop.Service.EmployeeService;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,32 +15,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class EmployeeController {
 
     private EmployeeService employeeService;
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
 
-    @PostMapping("/register")
-    public ResponseEntity<?> Add_Employee(@RequestBody RegisterEmployeeDTO employeeDTO) throws NotFound {
-        if(employeeDTO == null) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @PostMapping("/api/employees")
+    public ResponseEntity<RegisterEmployeeDTO> Add_Employee(@RequestBody RegisterEmployeeDTO employeeDTO) throws NotFound {
         RegisterEmployeeDTO newEmployee = employeeService.registerEmployee(employeeDTO);
-        if(newEmployee == null) {
-            throw new NotCreated("Employee Not Created");
-        }
-        else {
-            newEmployee.setPassword(null);
-            return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
-        }
+        return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }
 
 
-    @GetMapping("/Members")
-    public ResponseEntity<?> Get_Employees() {
-        List<EmployeeDTO> members = employeeService.getAllEmployee();
+    @GetMapping("/api/employees")
+    public ResponseEntity<List<EmployeeDTOForRecord>> Get_Employees() throws NotFound {
+        List<EmployeeDTOForRecord> members = employeeService.getAllEmployee();
+        return new ResponseEntity<>(members, HttpStatus.OK);
+    }
+    @GetMapping("/api/employees/{username}")
+    public ResponseEntity<EmployeeDTOForRecord> Get_Employee(@PathVariable String username) throws NotFound {
+        EmployeeDTOForRecord dtoForRecord = employeeService.getEmployeeByUserName(username);
+        return new ResponseEntity<>(dtoForRecord, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/employees/{username}")
+    public ResponseEntity<?> Delete_Employee(@PathVariable String username) throws NotFound {
+        employeeService.deleteEmployeeByUserName(username);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @PutMapping("/api/employees/{username}")
+    public ResponseEntity<?> Update_Employee_By_Member(@PathVariable String username, @RequestBody RegisterEmployeeDTO employeeDTO) throws NotFound {
+        employeeService.updateEmployeeByUserNameMember(username, employeeDTO);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

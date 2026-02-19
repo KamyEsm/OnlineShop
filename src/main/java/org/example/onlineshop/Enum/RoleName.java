@@ -1,7 +1,7 @@
 package org.example.onlineshop.Enum;
 
 public enum RoleName {
-    Customer,
-    Admin,
-    Manager
+    ROLE_CUSTOMER,
+    ROLE_ADMIN,
+    ROLE_MANAGER
 }
