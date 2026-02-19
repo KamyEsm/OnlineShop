@@ -12,4 +12,6 @@ public interface RoleR extends JpaRepository<Role, Long> {
     Role findByName(String name);
 
     boolean existsByName(String roleName);
+
+    void deleteByName(String name);
 }

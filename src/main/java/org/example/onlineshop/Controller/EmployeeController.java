@@ -1,6 +1,7 @@
 package org.example.onlineshop.Controller;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.example.onlineshop.DTO.EmployeeDTO;
 import org.example.onlineshop.DTO.EmployeeDTOForRecord;
 import org.example.onlineshop.DTO.RegisterEmployeeDTO;
@@ -15,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class EmployeeController {
 
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
     @PostMapping("/api/employees")
     public ResponseEntity<RegisterEmployeeDTO> Add_Employee(@RequestBody RegisterEmployeeDTO employeeDTO) throws NotFound {

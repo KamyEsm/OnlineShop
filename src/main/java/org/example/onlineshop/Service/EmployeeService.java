@@ -100,6 +100,14 @@ public class EmployeeService {
         if(checker.check(employeeDTO.getPassword()).isCompromised())
             throw new InsecurePassword("The password is simple.");
         employee.setPassword(passwordEncoder.encode(employeeDTO.getPassword()));
+    }
+
+    public Employee addRoleForEmployee(String username, Role role) throws NotFound {
+        Employee employee = eRepository.findEmployeeByUsername(username);
+        if(employee == null)
+            throw new NotFound("username not found");
+        employee.setRole(role);
         eRepository.save(employee);
+        return employee;
     }
 }
