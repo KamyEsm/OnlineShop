@@ -32,10 +32,13 @@ public class RoleService {
 
         List<String> userNameList = roleDTO.getUsernames();
         List<Employee> employees = new ArrayList<>();
-        for (String username : userNameList) {
-            EmployeeDTOForRecord employee = employeeService.getEmployeeByUserName(username);
-            Employee employee1 = employeeService.addRoleForEmployee(employee.getUsername(),role);
-            employees.add(employee1);
+        if(!(userNameList == null) && !userNameList.isEmpty()) {
+            for (String username : userNameList) {
+                EmployeeDTOForRecord employee = employeeService.getEmployeeByUserName(username);
+                Employee employee1 = employeeService.addRoleForEmployee(employee.getUsername(), role);
+                employees.add(employee1);
+            }
+
         }
         role.setUsers(employees);
         roleRepository.save(role);
@@ -53,7 +56,7 @@ public class RoleService {
     }
 
     public RoleDTO getRoleByName(String name) throws NotFound {
-        Role role = roleRepository.findByName(name);
+        Role role = roleRepository.findByName("ROLE_" + name);
         if(role == null)
             throw new NotFound("role not found");
         return roleMapper.toRoleDTO(role);
@@ -61,6 +64,7 @@ public class RoleService {
 
 
     public void  DeleteRoleByName(String name) throws NotFound {
+        name = "ROLE_" + name;
         if(!roleRepository.existsByName(name))
             throw new NotFound("role not found");
         roleRepository.deleteByName(name);

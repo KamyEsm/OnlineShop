@@ -18,7 +18,6 @@ public class RoleDTO {
     @Size(min = 2, max = 40)
     private String name;
     @Size(min = 2, max = 40)
-    @NotBlank
     private String description;
     private List<String> usernames;
 }
